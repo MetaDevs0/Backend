@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { UserModel } from '../usuario/usuario.js';
+import { UsuarioModelo } from '../usuario/usuario.js';
 const { Schema, model } = mongoose;
 
 const projectSchema = new Schema(
@@ -27,13 +27,13 @@ const projectSchema = new Schema(
     },
     fase: {
       type: String,
-      enum: ['INICIADO', 'EN DESARROLLO', 'TERMINADO'],
-      default: 'INICIADO',
+      enum: ['INICIADO', 'EN DESARROLLO', 'TERMINADO', ''],
+      default: '',
     },
     liderProyecto: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: UserModel,
+      ref: UsuarioModelo,
     },
     objetivos: [
       {

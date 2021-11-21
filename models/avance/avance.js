@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-//import { ProjectModel } from '../proyecto/proyecto.js';
+import { ProjectModel } from '../proyecto/proyecto.js';
 import { UsuarioModelo } from '../usuario/usuario.js';
 
 const { Schema, model } = mongoose;
@@ -18,11 +18,11 @@ const avanceSchema = new Schema({
       type: String,
     },
   ],
-//  proyecto: {
-//    type: Schema.Types.ObjectId,
-//    ref: ProjectModel,
-//    required: true,
-//  },
+  proyecto: {
+    type: Schema.Types.ObjectId,
+    ref: ProjectModel,
+    required: true,
+  },
   RealizadoPor: {
     type: Schema.Types.ObjectId,
     ref: UsuarioModelo,
