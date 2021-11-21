@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { ObjectiveModel } from '../objective.js';
 import { UserModel } from '../usuario/usuario.js';
 const { Schema, model } = mongoose;
 
@@ -28,8 +27,8 @@ const projectSchema = new Schema(
     },
     fase: {
       type: String,
-      enum: ['INICIADO', 'DESARROLLO', 'TERMINADO', 'NULO'],
-      default: 'NULO',
+      enum: ['INICIADO', 'EN DESARROLLO', 'TERMINADO'],
+      default: 'INICIADO',
     },
     liderProyecto: {
       type: Schema.Types.ObjectId,
@@ -51,8 +50,8 @@ const projectSchema = new Schema(
     ],
   },
   {
-    toJSON: { virtuals: true }, // So `res.json()` and other `JSON.stringify()` functions include virtuals
-    toObject: { virtuals: true }, // So `console.log()` and other functions that use `toObject()` include virtuals
+    toJSON: { virtuals: true }, 
+    toObject: { virtuals: true }, 
   }
 );
 
