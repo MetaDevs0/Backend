@@ -23,7 +23,7 @@ const avanceSchema = new Schema({
     ref: ProjectModel,
     required: true,
   },
-  RealizadoPor: {
+  realizadoPor: {
     type: Schema.Types.ObjectId,
     ref: UsuarioModelo,
     required: true,

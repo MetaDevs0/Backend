@@ -7,6 +7,7 @@ const projectSchema = new Schema(
     nombre: {
       type: String,
       required: true,
+      unique: true,
     },
     presupuesto: {
       type: Number,
@@ -27,8 +28,8 @@ const projectSchema = new Schema(
     },
     fase: {
       type: String,
-      enum: ['INICIADO', 'EN DESARROLLO', 'TERMINADO', ''],
-      default: '',
+      enum: ['INICIADO', 'EN DESARROLLO', 'TERMINADO', 'NULO'],
+      default: 'NULO',
     },
     liderProyecto: {
       type: Schema.Types.ObjectId,

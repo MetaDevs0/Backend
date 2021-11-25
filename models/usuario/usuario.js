@@ -30,8 +30,22 @@ const usuarioSchema = new Schema({
     enum: ['PENDIENTE', 'AUTORIZADO', 'NO_AUTORIZADO'],
     default: 'PENDIENTE',
   },
+  toJSON: { virtuals: true }, 
+  toObject: { virtuals: true }, 
 });
-u
+
+usuarioSchema.virtual('avances', {
+  ref: 'Avance',
+  localField: '_id',
+  foreignField: 'realizadoPor',
+});
+
+usuarioSchema.virtual('inscripciones', {
+  ref: 'Inscripcion',
+  localField: '_id',
+  foreignField: 'estudiante',
+});
+
 const UsuarioModelo = model('Usuario', usuarioSchema);
 
 export { UsuarioModelo };  
