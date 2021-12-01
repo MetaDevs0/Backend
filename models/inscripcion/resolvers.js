@@ -32,7 +32,6 @@ const resolverInscripciones = {
         args.id,
         {
           fechaEgreso: Date.now(),
-
         },
         { new : true }
       );
