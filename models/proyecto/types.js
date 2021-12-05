@@ -38,12 +38,12 @@ const tiposProyecto = gql`
 
     editarProyecto( 
       _id: String!
-      nombre: String!
-      presupuesto: Float!
-      fechaFin: String!
-      fechaInicio: String!
-      estado: Enum_EstadoProyecto!
-      fase: Enum_FaseProyecto!
+      nombre: String
+      presupuesto: Float
+      fechaFin: String
+      fechaInicio: String
+      estado: Enum_EstadoProyecto
+      fase: Enum_FaseProyecto
       ): Proyecto
 
     eliminarProyecto(_id:String!): Proyecto  

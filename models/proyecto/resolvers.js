@@ -32,7 +32,8 @@ const resolversProyecto = {
           fechaFin: args.fechaFin,
           estado: args.estado,
           fase: args.fase
-        }
+        },
+        {new : true}
 
       );
       return proyectoEditado;
