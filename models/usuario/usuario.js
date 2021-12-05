@@ -10,6 +10,10 @@ const usuarioSchema = new Schema({
     type: String,
     required: true,
   },
+  password: {
+    type: String,
+    required: true,
+  },
   correo :{
     type: String,
     required: true,
@@ -30,9 +34,12 @@ const usuarioSchema = new Schema({
     enum: ['PENDIENTE', 'AUTORIZADO', 'NO_AUTORIZADO'],
     default: 'PENDIENTE',
   },
+},
+  {
   toJSON: { virtuals: true }, 
   toObject: { virtuals: true }, 
-});
+  }
+);
 
 usuarioSchema.virtual('avances', {
   ref: 'Avance',

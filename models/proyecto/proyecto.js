@@ -31,7 +31,7 @@ const projectSchema = new Schema(
       enum: ['INICIADO', 'EN DESARROLLO', 'TERMINADO', 'NULO'],
       default: 'NULO',
     },
-    liderProyecto: {
+    lider: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: UsuarioModelo,

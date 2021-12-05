@@ -3,13 +3,13 @@ import { AvanceModelo } from './avance.js';
 const resolversAvance = {
   Query: {
     Avances: async (parent, args) => {
-      const avances = await AvanceModelo.find().populate('proyecto').populate('creadoPor');
+      const avances = await AvanceModelo.find().populate('proyecto').populate('realizadoPor');
       return avances;
     },
     filtrarAvance: async (parents, args) => {
       const avanceFiltrado = await AvanceModelo.find({ proyecto: args._id })
         .populate('proyecto')
-        .populate('creadoPor');
+        .populate('realizadoPor');
       return avanceFiltrado;
     },
   },
@@ -19,7 +19,7 @@ const resolversAvance = {
         fecha: args.fecha,
         descripcion: args.descripcion,
         proyecto: args.proyecto,
-        creadoPor: args.creadoPor,
+        realizadoPor: args.realizadoPor,
       });
       return avanceCreado;
     },
@@ -29,7 +29,7 @@ const resolversAvance = {
         { fecha: args.fecha,
           descripcion: args.descripcion,
           proyecto: args.proyecto,
-          creadoPor: args.creadoPor,
+          realizadoPor: args.realizadoPor,
           observaciones: args.observaciones, 
         },
         { new: true }

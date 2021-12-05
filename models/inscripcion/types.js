@@ -14,11 +14,12 @@ const tiposInscripcion = gql`
   }
   type Mutation {
     crearInscripcion(
-      estado: Enum_EstadoInscripcion!
       proyecto: String!
       estudiante: String!
     ): Inscripcion
+    
     aprobarInscripcion(id: String!): Inscripcion
+    
     terminarInscripcion(id:String!):Inscripcion
   }
 `;
