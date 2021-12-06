@@ -11,6 +11,10 @@ const resolversUsuario = {
       const usuario = await UsuarioModelo.findOne({ _id: args._id });
       return usuario;
     },
+    Estudiante: async(parent, args) =>{
+      const estudiantes = await UsuarioModelo.find({rol: "ESTUDIANTE"});
+      return estudiantes
+    }
   },
   Mutation: {
     crearUsuario: async (parent, args) => {
@@ -42,6 +46,20 @@ const resolversUsuario = {
       );
 
       return usuarioEditado;
+    },
+
+    editarEstudiante: async(parent,args) =>{
+      if( args.rol === "ESTUDIANTE"){
+        const estudianteEditado = await UsuarioModelo.findByIdAndUpdate(
+          args._id, 
+            {
+              estado:args.estado
+            },
+            {new: true}        
+            );
+            return estudianteEditado;
+      }
+    
     },
     eliminarUsuario: async (parent, args) => {
       if (Object.keys(args).includes('_id')) {

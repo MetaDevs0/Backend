@@ -3,8 +3,12 @@ import { ProjectModel } from './proyecto.js';
 const resolversProyecto = {
   Query: {
     Proyectos: async (parent, args) => {
-      const proyectos = await ProjectModel.find().populate('avances').populate('inscripciones');
+      const proyectos = await ProjectModel.find().populate('avances').populate('inscripciones').populate('lider');
       return proyectos;
+    },
+    ProyectosLiderado: async(parent, args) =>{
+      const liderx = await ProjectModel.find({lider : args.lider});
+      return liderx;
     },
   },
   Mutation: {
@@ -37,6 +41,19 @@ const resolversProyecto = {
 
       );
       return proyectoEditado;
+    },
+
+    editarProyectoLider: async(parent, args) => {
+      if( args.estado === "ACTIVO" && lider === args.lider){
+      const proyectoEditadoLider= await ProjectModel.findByIdAndUpdate(
+        args._id,{
+          nombre: args.nombre,
+          presupuesto: args.presupuesto,
+        },
+        {new : true}
+      );
+      return proyectoEditadoLider;
+      };
     },
     eliminarProyecto: async(parent,args) =>{
       const proyectoEliminado = await ProjectModel.findByIdAndDelete(

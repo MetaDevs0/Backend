@@ -3,7 +3,7 @@ import { InscriptionModel } from './inscripcion.js';
 const resolverInscripciones = {
   Query: {
     Inscripciones: async (parent, args) => {
-      const inscripciones = await InscriptionModel.find().populate('proyecto');
+      const inscripciones = await InscriptionModel.find().populate('proyecto').populate('estudiante');
       return inscripciones;
     },
   },
