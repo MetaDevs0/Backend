@@ -6,6 +6,10 @@ const resolverInscripciones = {
       const inscripciones = await InscriptionModel.find().populate('proyecto').populate('estudiante');
       return inscripciones;
     },
+    InscripcionesFilt: async(parent, args) => {
+      const InscripProyecto = await InscriptionModel.find({proyecto: args.proyecto});
+      return InscripProyecto;
+    },
   },
   Mutation: {
     crearInscripcion: async (parent, args) => {
@@ -15,9 +19,18 @@ const resolverInscripciones = {
       });
       return inscripcionCreada;
     },
+    editarInscripcion: async(parent,args) =>{
+      const InscripEditada = await InscriptionModel.findOneAndUpdate({proyecto: args.proyecto, _id: args._id},
+        {
+        estado: args.estado,
+      },
+      {new : true}
+      );
+      return InscripEditada
+    },
     aprobarInscripcion: async (parent, args) => {
       const inscripcionAprobada = await InscriptionModel.findByIdAndUpdate(
-        args.id,
+        args._id,
         {
           estado: 'ACEPTADO',
           fechaIngreso: Date.now(),
@@ -28,7 +41,7 @@ const resolverInscripciones = {
     },
     terminarInscripcion: async(parent,args)=>{
       const terminarInscripcion = await InscriptionModel.findByIdAndUpdate(
-        args.id,
+        args._id,
         {
           fechaEgreso: Date.now(),
         },

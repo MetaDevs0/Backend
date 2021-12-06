@@ -3,12 +3,24 @@ import { ProjectModel } from './proyecto.js';
 const resolversProyecto = {
   Query: {
     Proyectos: async (parent, args) => {
-      const proyectos = await ProjectModel.find().populate('avances').populate('inscripciones').populate('lider');
+      const proyectos = await ProjectModel.find().populate([
+        { path: 'lider' },
+        { path: 'avances' },
+        { path: 'inscripciones', populate: { path: 'estudiante' } },
+      ]);
       return proyectos;
     },
     ProyectosLiderado: async(parent, args) =>{
       const liderx = await ProjectModel.find({lider : args.lider});
       return liderx;
+    },
+    Proyecto: async (parent, args) =>{
+      const proyectoConTodo = await ProjectModel.findOne({_id: args._id}).populate([
+        { path: 'lider' },
+        { path: 'avances' },
+        { path: 'inscripciones', populate: { path: 'estudiante' } },
+      ]);
+      return proyectoConTodo
     },
   },
   Mutation: {
@@ -44,16 +56,15 @@ const resolversProyecto = {
     },
 
     editarProyectoLider: async(parent, args) => {
-      if( args.estado === "ACTIVO" && lider === args.lider){
-      const proyectoEditadoLider= await ProjectModel.findByIdAndUpdate(
-        args._id,{
+
+      const proyectoEditadoLider= await ProjectModel.findOneAndUpdate({lider: args.lider, _id: args._id, estado: "ACTIVO"},
+        {
           nombre: args.nombre,
           presupuesto: args.presupuesto,
         },
         {new : true}
       );
       return proyectoEditadoLider;
-      };
     },
     eliminarProyecto: async(parent,args) =>{
       const proyectoEliminado = await ProjectModel.findByIdAndDelete(

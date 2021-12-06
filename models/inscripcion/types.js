@@ -19,9 +19,11 @@ const tiposInscripcion = gql`
       estudiante: String!
     ): Inscripcion
     
-    aprobarInscripcion(id: String!): Inscripcion
+    editarInscripcion(_id: String!, proyecto: String!, estado: String):Inscripcion
+
+    aprobarInscripcion(_id: String!): Inscripcion
     
-    terminarInscripcion(id:String!):Inscripcion
+    terminarInscripcion(_id:String!):Inscripcion
   }
 `;
 
