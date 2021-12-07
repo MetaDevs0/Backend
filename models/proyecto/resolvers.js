@@ -93,6 +93,7 @@ const resolversProyecto = {
         },
         { new: true }
       );
+      return proyectoConObjetivo
     },
 
     editarObjetivo: async (parent, args) => {

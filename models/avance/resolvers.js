@@ -35,7 +35,19 @@ const resolversAvance = {
         { new: true }
       );
       return avanceEditado;
-    }
+    },
+    agregarObservacion: async( parent, args) => {
+      const avanceConObservacion = await AvanceModelo.findByIdAndUpdate(
+        args._id,
+        {
+          $addToSet:{
+            observacion : args.observacion
+          },
+        },
+        {new: true}
+      );
+      return avanceConObservacion;
+    },
   },
 };
 
