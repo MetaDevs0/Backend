@@ -19,7 +19,7 @@ const tiposInscripcion = gql`
       estudiante: String!
     ): Inscripcion
     
-    editarInscripcion(_id: String!, proyecto: String!, estado: String):Inscripcion
+    editarInscripcion(_id: String!, proyecto: String!, estado: Enum_EstadoInscripcion):Inscripcion
 
     aprobarInscripcion(_id: String!): Inscripcion
     

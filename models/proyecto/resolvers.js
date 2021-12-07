@@ -11,7 +11,11 @@ const resolversProyecto = {
       return proyectos;
     },
     ProyectosLiderado: async(parent, args) =>{
-      const liderx = await ProjectModel.find({lider : args.lider});
+      const liderx = await ProjectModel.find({lider : args.lider}).populate([
+        { path: 'lider' },
+        { path: 'avances' },
+        { path: 'inscripciones', populate: { path: 'estudiante' } },
+      ]);
       return liderx;
     },
     Proyecto: async (parent, args) =>{

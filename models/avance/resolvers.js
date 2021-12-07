@@ -41,7 +41,7 @@ const resolversAvance = {
         args._id,
         {
           $addToSet:{
-            observacion : args.observacion
+            observaciones : args.observacion
           },
         },
         {new: true}
