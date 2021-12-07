@@ -15,6 +15,10 @@ const server = new ApolloServer({
 
 const app = express();
 
+app.get("/grapql", (req,res) => {
+  res.send("Queries Apollo");
+});
+
 app.use(express.json());
 
 app.use(cors());
